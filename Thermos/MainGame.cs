@@ -8,7 +8,7 @@ public class MainGame : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private Texture2D _box;
+    private Sprite _playerSprite;
 
     public MainGame()
     {
@@ -19,17 +19,18 @@ public class MainGame : Game
 
     protected override void Initialize()
     {
-        _graphics.PreferredBackBufferWidth = 1024;
-        _graphics.PreferredBackBufferHeight = 1024;
+        _graphics.PreferredBackBufferWidth = 512;
+        _graphics.PreferredBackBufferHeight = 512;
         _graphics.ApplyChanges();
+
+        _playerSprite = new Sprite(Content.Load<Texture2D>("box"), new Vector2(0, 0));
+        
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        _box = Content.Load<Texture2D>("box");
     }
 
     protected override void Update(GameTime gameTime)
@@ -37,6 +38,7 @@ public class MainGame : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
+        _playerSprite.MoveRight();
         
 
         base.Update(gameTime);
@@ -47,7 +49,7 @@ public class MainGame : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         _spriteBatch.Begin();
-        _spriteBatch.Draw(_box, new Vector2(0, 0), Color.White);
+        _playerSprite.Render(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);
