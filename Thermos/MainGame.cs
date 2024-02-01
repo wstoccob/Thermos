@@ -18,8 +18,8 @@ public class MainGame : Game
 
     protected override void Initialize()
     {
-        _graphics.PreferredBackBufferWidth = 800;
-        _graphics.PreferredBackBufferHeight = 800;
+        _graphics.PreferredBackBufferWidth = 1024;
+        _graphics.PreferredBackBufferHeight = 1024;
         _graphics.ApplyChanges();
         base.Initialize();
     }
@@ -28,7 +28,7 @@ public class MainGame : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        
     }
 
     protected override void Update(GameTime gameTime)
@@ -36,8 +36,7 @@ public class MainGame : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
-        // TODO: Add your update logic here
+        
 
         base.Update(gameTime);
     }
@@ -46,7 +45,6 @@ public class MainGame : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
 
         base.Draw(gameTime);
     }
