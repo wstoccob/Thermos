@@ -8,6 +8,7 @@ public class MainGame : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    private Texture2D _box;
 
     public MainGame()
     {
@@ -28,7 +29,7 @@ public class MainGame : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        
+        _box = Content.Load<Texture2D>("box");
     }
 
     protected override void Update(GameTime gameTime)
@@ -45,6 +46,9 @@ public class MainGame : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
+        _spriteBatch.Begin();
+        _spriteBatch.Draw(_box, new Vector2(0, 0), Color.White);
+        _spriteBatch.End();
 
         base.Draw(gameTime);
     }
